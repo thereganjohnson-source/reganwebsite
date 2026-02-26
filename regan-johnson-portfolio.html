@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regan Johnson — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  /* ─── PANTONE 11-4201 Cloud Dancer + Powdered Pastels ─── */
+  :root {
+    --cloud-dancer:  #F0EEE9; /* Pantone 11-4201 — base */
+    --lemon-icing:   #F6EBC8; /* Pantone 11-0515 */
+    --nimbus-cloud:  #D5D5D8; /* Pantone 13-4108 */
+    --raindrops:     #EBD8DB; /* Pantone 11-1400 */
+    --ice-melt:      #D3E4F1; /* Pantone 13-4306 */
+    --peach-dust:    #F0D8CC; /* Pantone 12-1107 */
+    --orchid-tint:   #DBD2DB; /* Pantone 13-3802 */
+
+    --bg:       var(--cloud-dancer);
+    --surface:  #FAFAF7;
+    --ink:      #2E2B28;
+    --ink-mid:  #6B6560;
+    --ink-lite: #9E9890;
+    --border:   #E0DDD5;
+
+    /* Accents = pastel shades deepened for legible contrast */
+    --rose:    #C4949E;
+    --blue:    #8AAFC8;
+    --orchid:  #A898AB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* subtle grain */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  .meta-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 3rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-lite);
+    font-weight: 400;
+  }
+
+  .masthead {
+    padding: 3.5rem 3rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 3rem;
+  }
+
+  .name-block h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+
+  .name-block h1 .hi { color: var(--rose); }
+
+  .name-block .role {
+    margin-top: 1.2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-weight: 400;
+  }
+
+  .name-block .role::before {
+    content: '';
+    width: 28px; height: 1.5px;
+    background: var(--rose);
+    flex-shrink: 0;
+  }
+
+  .header-quote {
+    max-width: 210px;
+  }
+
+  .header-quote blockquote {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    font-style: italic;
+    font-weight: 300;
+    border-left: 2px solid var(--orchid-tint);
+    padding-left: 1rem;
+  }
+
+  .header-quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-style: normal;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orchid);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+  }
+
+  .palette-stripe {
+    display: flex;
+    height: 6px;
+  }
+  .palette-stripe span { flex: 1; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    display: flex;
+    overflow-x: auto;
+  }
+
+  nav a {
+    color: var(--cloud-dancer);
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 1rem 1.8rem;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  section {
+    padding: 4.5rem 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  section.visible { opacity: 1; transform: translateY(0); }
+
+  .label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+
+  .values-card {
+    background: var(--ink);
+    padding: 2rem 2.2rem 2.4rem;
+  }
+
+  .values-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orchid-tint);
+    margin-bottom: 1.4rem;
+  }
+
+  .values-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+
+  .values-list li {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cloud-dancer);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+  }
+
+  .values-list li::before {
+    content: '';
+    width: 16px; height: 1.5px;
+    background: var(--rose);
+    flex-shrink: 0;
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--lemon-icing);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+    margin-bottom: 1.8rem;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: slide 30s linear infinite;
+  }
+
+  .ticker-inner span {
+    display: inline-block;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin: 0 1.2rem;
+    font-weight: 400;
+  }
+
+  .ticker-inner span.a {
+    color: var(--rose);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+  }
+
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .sc {
+    background: var(--surface);
+    padding: 1.5rem 1.4rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sc::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    transition: width 0.35s;
+  }
+
+  .sc:nth-child(1)::after,.sc:nth-child(4)::after { background: var(--rose); }
+  .sc:nth-child(2)::after,.sc:nth-child(5)::after { background: var(--blue); }
+  .sc:nth-child(3)::after,.sc:nth-child(6)::after { background: var(--orchid); }
+
+  .sc:hover { background: var(--cloud-dancer); }
+  .sc:hover::after { width: 100%; }
+
+  .sc .cat {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.57rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.45rem;
+  }
+
+  .sc h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.25;
+  }
+
+  .sc p {
+    margin-top: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── EXPERIENCE ── */
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.55rem; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .job {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+
+  .job::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem; top: 0.52rem;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--rose);
+    box-shadow: 0 0 0 3px var(--raindrops);
+  }
+
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.18rem;
+  }
+
+  .job-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .job-date {
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-lite);
+    white-space: nowrap;
+  }
+
+  .job-co {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+
+  .job-list { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
+
+  .job-list li {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .job-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--nimbus-cloud);
+  }
+
+  /* ── IMPACT ── */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .ic {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .ic:nth-child(1) { background: var(--raindrops); }
+  .ic:nth-child(2) { background: var(--ice-melt); }
+  .ic:nth-child(3) { background: var(--lemon-icing); }
+
+  .ic-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2.8rem;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .ic-label {
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .ec {
+    padding: 1.4rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.25s;
+  }
+
+  .ec:hover { border-color: var(--rose); }
+
+  .ec .type {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.57rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orchid);
+    margin-bottom: 0.38rem;
+  }
+
+  .ec h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    line-height: 1.3;
+  }
+
+  .ec p {
+    margin-top: 0.28rem;
+    font-size: 0.7rem;
+    color: var(--ink-lite);
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .f-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--cloud-dancer);
+  }
+
+  footer p {
+    margin-top: 0.3rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--nimbus-cloud);
+  }
+
+  .li-btn {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cloud-dancer);
+    text-decoration: none;
+    border: 1.5px solid var(--orchid-tint);
+    padding: 0.65rem 1.4rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .li-btn:hover { background: var(--orchid-tint); color: var(--ink); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    main { padding: 0 1.5rem; }
+    .masthead { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; gap: 1.5rem; }
+    .meta-bar { padding: 0.7rem 1.5rem; flex-wrap: wrap; gap: 0.3rem; }
+    .header-quote { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    nav a { padding: 0.85rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="meta-bar">
+    <span>Data Analyst &amp; Storyteller</span>
+    <span>San Francisco Bay Area, CA</span>
+    <span>Full-Stack · SQL · Tableau · Power BI</span>
+  </div>
+  <div class="masthead">
+    <div class="name-block">
+      <h1>Regan<br><span class="hi">Johnson</span></h1>
+      <div class="role">Full-Stack Data Analyst · Marketing &amp; CX</div>
+    </div>
+    <div class="header-quote">
+      <blockquote>
+        "Everybody gets so much information all day long that they lose their common sense."
+        <cite>— Gertrude Stein</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Pantone Powdered Pastels swatch stripe -->
+  <div class="palette-stripe">
+    <span style="background:#F0EEE9"></span><!-- Cloud Dancer -->
+    <span style="background:#F6EBC8"></span><!-- Lemon Icing -->
+    <span style="background:#EBD8DB"></span><!-- Raindrops on Roses -->
+    <span style="background:#F0D8CC"></span><!-- Peach Dust -->
+    <span style="background:#D3E4F1"></span><!-- Ice Melt -->
+    <span style="background:#DBD2DB"></span><!-- Orchid Tint -->
+    <span style="background:#D5D5D8"></span><!-- Nimbus Cloud -->
+  </div>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#impact">Impact</a>
+  <a href="#education">Education</a>
+</nav>
+
+<main>
+
+  <section id="about">
+    <div class="label">About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I wear every hat in the data stack: engineer, analyst, visualizer, and storyteller. I manage the full data lifecycle solo—building pipelines, ensuring quality, and delivering insights that drive real decisions.</p>
+        <p>My toolkit spans Tableau, Power BI, SQL, and Excel, but I'm tool-agnostic because the right solution always matters more than the trendy one. I bring program management experience and a knack for bridging technical and business teams.</p>
+        <p>My sweet spot is connecting data insights to what matters most: customer experience and retention. I speak both data and digital marketing fluently—translating metrics into strategies that actually move the needle.</p>
+      </div>
+      <div class="values-card">
+        <h3>Professional Values</h3>
+        <ul class="values-list">
+          <li>Hard Work</li>
+          <li>Growth Mindset</li>
+          <li>Taking Calculated Risks</li>
+          <li>Celebrating Success</li>
+          <li>Bridging Technical &amp; Business Teams</li>
+          <li>Tool-Agnostic Problem Solving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="label">Core Skills</div>
+    <div class="ticker-wrap">
+      <div class="ticker-inner">
+        <span class="a">Tableau</span><span>·</span>
+        <span class="a">Power BI</span><span>·</span>
+        <span>Microsoft SQL Server</span><span>·</span>
+        <span>Microsoft Excel</span><span>·</span>
+        <span>Adobe Analytics</span><span>·</span>
+        <span>Qualtrics</span><span>·</span>
+        <span>Confluence</span><span>·</span>
+        <span>SharePoint</span><span>·</span>
+        <span class="a">Data Engineering</span><span>·</span>
+        <span class="a">Data Visualization</span><span>·</span>
+        <span>CX Analytics</span><span>·</span>
+        <span>Social Media Analytics</span><span>·</span>
+        <span>Agile</span><span>·</span>
+        <span class="a">Tableau</span><span>·</span>
+        <span class="a">Power BI</span><span>·</span>
+        <span>Microsoft SQL Server</span><span>·</span>
+        <span>Microsoft Excel</span><span>·</span>
+        <span>Adobe Analytics</span><span>·</span>
+        <span>Qualtrics</span><span>·</span>
+        <span>Confluence</span><span>·</span>
+        <span>SharePoint</span><span>·</span>
+        <span class="a">Data Engineering</span><span>·</span>
+        <span class="a">Data Visualization</span><span>·</span>
+        <span>CX Analytics</span><span>·</span>
+        <span>Social Media Analytics</span><span>·</span>
+        <span>Agile</span><span>·</span>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="sc"><div class="cat">Visualization</div><h4>Tableau &amp; Power BI</h4><p>Dashboard development, cloud migration, self-service reporting, KPI tracking</p></div>
+      <div class="sc"><div class="cat">Data</div><h4>SQL &amp; Excel</h4><p>Pipeline building, data quality, analysis, automated workflows</p></div>
+      <div class="sc"><div class="cat">Marketing</div><h4>Digital Analytics</h4><p>Adobe Analytics, social media performance, email campaigns, mobile app tracking</p></div>
+      <div class="sc"><div class="cat">Research</div><h4>Customer Insights</h4><p>Qualtrics survey design, CX research, retention analysis, stakeholder reporting</p></div>
+      <div class="sc"><div class="cat">Leadership</div><h4>Program Management</h4><p>Cross-functional collaboration, Agile process lead, grant reporting, compliance</p></div>
+      <div class="sc"><div class="cat">Communication</div><h4>Data Storytelling</h4><p>Translating technical insights into business strategy for executive audiences</p></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="label">Experience</div>
+    <div class="timeline">
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Full-Stack Data Analyst</div>
+          <div class="job-date">Jul 2024 – Present</div>
+        </div>
+        <div class="job-co">Dientes Community Dental Care · Santa Cruz County, CA</div>
+        <ul class="job-list">
+          <li>Developed an automated billing process to increase efficiency and payment collection</li>
+          <li>Led Tableau cloud migration then implemented Power BI, saving the organization significant licensing costs</li>
+          <li>Built Power BI dashboards for goal tracking and grant reporting across clinical, billing, marketing, and operations teams</li>
+          <li>Manage the full data lifecycle solo: engineering, quality assurance, analysis, and visualization</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Senior Data Analyst</div>
+          <div class="job-date">Jul 2022 – Dec 2022</div>
+        </div>
+        <div class="job-co">Homesite Insurance · Santa Cruz, CA</div>
+        <ul class="job-list">
+          <li>Served as department SME on Customer Retention; developed and maintained documentation and training materials</li>
+          <li>Conducted data analysis in SQL to identify customer pain points; visualized results in Tableau, PowerPoint, and Excel</li>
+          <li>Served as Agile process team lead and liaison to management</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Consumer Insights Analyst</div>
+          <div class="job-date">Mar 2020 – Jul 2022</div>
+        </div>
+        <div class="job-co">American Family Insurance · Madison, WI</div>
+        <ul class="job-list">
+          <li>Project Manager for Fortune 300 CX survey refresh — saved $2MM by bringing the project in-house</li>
+          <li>Enterprise-wide Qualtrics lead: requirements gathering, QA testing, KPI establishment, and reporting</li>
+          <li>Saved $100K by migrating the customer research library from external vendor to Confluence and SharePoint</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Digital Touchpoints Senior Analyst</div>
+          <div class="job-date">Apr 2017 – Mar 2020</div>
+        </div>
+        <div class="job-co">American Family Insurance · Madison, WI</div>
+        <ul class="job-list">
+          <li>Developed KPIs for website and mobile app; created and maintained dashboards in Adobe, Excel, and Tableau</li>
+          <li>Analyzed customer behavior in Adobe Analytics and SQL to drive product recommendations</li>
+          <li>Oversaw implementation of Adobe Analytics on website and app; served as Marketing Division Tableau Lead</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-head">
+          <div class="job-title">Social Media Administrator</div>
+          <div class="job-date">Feb 2016 – Nov 2019</div>
+        </div>
+        <div class="job-co">American Family Insurance · Madison, WI</div>
+        <ul class="job-list">
+          <li>Led "Dad Insurance" campaign — highest-performing American Family digital video with 6M+ views; #1 on YouTube Ads Leaderboard, June 2016</li>
+          <li>Managed social campaigns for NBA Draft, Twitter, and MapMyFitness activations with $2MM+ budgets</li>
+          <li>Optimized performance against CTR, VCR, and CPE benchmarks in a continuous test-and-learn model</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="label">Impact by the Numbers</div>
+    <div class="impact-grid">
+      <div class="ic">
+        <div class="ic-num">$2MM</div>
+        <div class="ic-label">Saved by insourcing a Fortune 300 CX survey project</div>
+      </div>
+      <div class="ic">
+        <div class="ic-num">6M+</div>
+        <div class="ic-label">Views on social campaign — #1 YouTube Ads Leaderboard</div>
+      </div>
+      <div class="ic">
+        <div class="ic-num">$100K</div>
+        <div class="ic-label">Saved by migrating customer research library in-house</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="label">Education &amp; Certifications</div>
+    <div class="edu-grid">
+      <div class="ec"><div class="type">Degree</div><h4>B.A. Political Science</h4><p>St. Olaf College · 1999–2002</p></div>
+      <div class="ec"><div class="type">Certificate</div><h4>Social Media Marketing</h4><p>Madison Area Technical College · 2012–2013</p></div>
+      <div class="ec"><div class="type">Certification</div><h4>Dashboard in a Day</h4><p>Power BI · Microsoft</p></div>
+      <div class="ec"><div class="type">Certification</div><h4>Leadership Development Program</h4><p>Professional development credential</p></div>
+      <div class="ec"><div class="type">Certification</div><h4>AI Champion for Nonprofits</h4><p>Emerging technology &amp; social impact</p></div>
+      <div class="ec"><div class="type">Language</div><h4>Spanish</h4><p>Limited working proficiency</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <div class="f-name">Regan Johnson</div>
+    <p>Full-Stack Data Analyst · San Francisco Bay Area</p>
+  </div>
+  <a href="https://www.linkedin.com/in/reganjohnson700" target="_blank" class="li-btn">View LinkedIn →</a>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('section').forEach(s => obs.observe(s));
+  document.querySelectorAll('.job').forEach((j, i) => j.style.transitionDelay = `${i * 0.07}s`);
+</script>
+
+</body>
+</html>
